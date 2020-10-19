@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:gv="clr-namespace:Atomus.Scanner.Barcode;assembly=Atomus.Core"
+             xmlns:local="clr-namespace:Atomus.Page.Scanner.Barcode.ViewModel"
+             mc:Ignorable="d"
+             x:Class="Atomus.Page.Scanner.Barcode.DefaultBarcodeScan">
+
+    <!--<ContentPage.BindingContext>
+        <local:DefaultBarcodeScanViewModel />
+    </ContentPage.BindingContext>-->
+    
+    <ContentPage.Content>
+        <Grid RowSpacing="0" ColumnSpacing="0" Padding="0,0,0,0" Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <gv:BarCodeCameraView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="3"
+                                  HorizontalOptions="FillAndExpand" Margin="0,0,0,0"
+                                  OnDetected="CameraView_OnDetected" IsEnabled="{Binding IsEnabledControl}" />
+
+            <Button Grid.Row="1" Grid.Column="1"
+                    Text="" BorderWidth="5" BorderColor="Black" Opacity="0.5" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+
+            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="2"
+                  RowSpacing="0" ColumnSpacing="0" Padding="0,0,0,0" Margin="0,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="End">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="54"/>
+                    <RowDefinition Height="54"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"
+                       Text="{Binding ScanResult}" IsEnabled="{Binding IsEnabledControl}"
+                       FontSize="Micro" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" VerticalTextAlignment="Start" TextColor="Red"/>
+                <Button Grid.Row="1" Grid.Column="0"
+                        Command="{Binding BackCommand}" IsEnabled="{Binding IsEnabledControl}"
+                        Text="Back" BorderWidth="1" BackgroundColor="Transparent" HorizontalOptions="StartAndExpand"/>
+                <Button Grid.Row="1" Grid.Column="3"
+                        Command="{Binding FlashlightCommand}" IsEnabled="{Binding IsEnabledControl}"
+                        Text="Flash" BorderWidth="1" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand"/>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
